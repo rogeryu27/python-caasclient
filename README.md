@@ -3,7 +3,7 @@ python-caasclient
 
 Python client for caas
 
-Brief Introduction
+*To be filled: Brief Introduction*
 
 Features
 --------

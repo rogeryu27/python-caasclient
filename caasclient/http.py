@@ -2,7 +2,7 @@
 # @Author: Administrator
 # @Date:   2017-05-06 23:10:19
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-08 09:28:33
+# @Last Modified time: 2017-05-08 09:41:08
 import requests
 
 class HTTPClient(object):
@@ -10,14 +10,12 @@ class HTTPClient(object):
 		self.endpoint = endpoint
 		# Authentication self.auth_token = kwargs.get('auth_token')
 		self.api_version = kwargs.get('api_version')
-		self.connection_params = self.get('connection_params')
+		self.connection_params = kwargs.get('connection_params')
 
 	def session(self):
 		return requests.Session
 
-	def get_connection():
-
-	def make_uri(self,**kwargs):
+	def make_url(self,**kwargs):
 		pass
 
 	def get(self, *args, **kwargs):
