@@ -13,7 +13,7 @@ class Client(object):
 		'''
 			To be optimized before supporting multi tenant
 		'''
-		if not caas_url
+		if not caas_url:
 			caas_url = "default"
 
 		http_client = HTTPClient(caas_url,**kwargs)

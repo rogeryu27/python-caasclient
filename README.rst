@@ -14,8 +14,8 @@ Installation
 ------------
 
 	git clone https://github.com/rogeryu27/python-caasclient.git
-	cd caasclient
-	python setup.py
+	cd python-caasclient
+	python setup.py install
 
 Usage
 -----

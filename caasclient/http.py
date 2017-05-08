@@ -18,20 +18,19 @@ class HTTPClient(object):
 	def make_url(self,**kwargs):
 		pass
 
-	def get(self, *args, **kwargs):
-		return self.session.get(*args,endpoint)
+	def get(self):
+		return self.session.get()
 		
-	def post(self, *args, **kwargs):
-		return self.session.pos(*args,endpoint)
+	def post(self):
+		return self.session.post()
 
-	def put(self, *args, **kwargs):
-		return self.session.put(*args,endpoint)
+	def put(self):
+		return self.session.put()
 
-	def patch(self, *args, **kwargs):
-		return self.session.patch(*args,endpoint)
+	def patch(self):
+		return self.session.patch()
 
-	def delete(self, *args, **kwargs):
-
-		return self.session.delete(*args,endpoint)
+	def delete(self):
+		return self.session.delete()
 
 # class HTTPSession(object):
