@@ -6,6 +6,6 @@
 
 from caasclient.v1 import base
 
-class ImageManager(Manager):
+class ImageManager(base.Manager):
     """docstring for ImageManager"""
     api_name = "images"

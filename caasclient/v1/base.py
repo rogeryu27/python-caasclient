@@ -11,12 +11,12 @@ class Manager(object):
 		self.api = api
 
 	def make_path(self, id):
-		return '/' + api.api_version + '/' + \
+		return '/' + self.api.api_version + '/' + \
 			self.api_name + '/%s' % id if id else \
-			'/' + api.api_version + '/' + self.api_name
+			'/' + self.api.api_version + '/' + self.api_name
 
 	def list(self):
-		pass
+		return {"a":"a"}
 
 	def get(self, id):
 		pass
@@ -28,7 +28,7 @@ class Manager(object):
 		pass
 		
 	def delete(self, id):
-		api.delete(make_path(id))
+		self.api.delete(self.make_path(id))
 
 
 	

@@ -6,6 +6,6 @@
 
 from caasclient.v1 import base
 
-class ContainerManager(Manager):
+class ContainerManager(base.Manager):
 
 	api_name = "containers"

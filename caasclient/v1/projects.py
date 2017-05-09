@@ -6,6 +6,6 @@
 
 from caasclient.v1 import base
 
-class ProjectManager(Manager):
+class ProjectManager(base.Manager):
 
     api_name = "projects"

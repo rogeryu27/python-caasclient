@@ -5,6 +5,9 @@
 # @Last Modified time: 2017-05-08 09:27:31
 
 from http import HTTPClient
+from caasclient.v1 import projects
+from caasclient.v1 import images
+from caasclient.v1 import containers
 
 class Client(object):
 	def __init__(self,caas_url,username=None,password=None,
@@ -16,7 +19,7 @@ class Client(object):
 		if not caas_url:
 			caas_url = "default"
 
-		http_client = HTTPClient(caas_url,**kwargs)
+		self.http_client = HTTPClient(caas_url,**kwargs)
 
 		self.projects = projects.ProjectManager(self.http_client)
 		self.images = images.ImageManager(self.http_client)
