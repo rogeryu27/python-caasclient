@@ -2,7 +2,7 @@
 # @Author: Administrator
 # @Date:   2017-05-07 22:29:31
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-08 10:02:29
+# @Last Modified time: 2017-05-09 17:01:57
 
 
 class Manager(object):
@@ -22,7 +22,7 @@ class Manager(object):
 		pass
 
 	def create(self, id):
-		pass
+		self.api.post()
 
 	def filter(self, id):
 		pass
