@@ -19,7 +19,8 @@ Using pip::
 
 A virtualenvwrapper is recommended::
 
-	virtualenv python-magnumclient
+	virtualenv python-caasclient
+    source python-caasclient/bin/activate
 	pip install python-caasclient
 
 Manual Installation::
@@ -35,9 +36,9 @@ Query for all ready containers [in a custom namespace]:
 
 .. code:: python
 	
-	from python-caasclient import client
+	from caasclient import client as caas_client
 
-	container_list = client(<caas url>).containers.list()
+	container_list = caas_client.Client(<caas url>).containers.list()
 
 Create a self-defined image:
 
@@ -45,9 +46,9 @@ Create a self-defined image:
 	
 	import os
 
-	from python-caasclient import client
+	from caasclient import client as caas_client
 
-	image = client(<caas url>).image.create_by_dockerfile(os.open('path/to/dockerfile','w+'))
+	image = caas_client.Client(<caas url>).image.create_by_dockerfile(os.open('path/to/dockerfile','w+'))
 
 Requirements
 ------------
