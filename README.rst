@@ -1,7 +1,7 @@
 python-caasclient
 =================
 
-Python client for caas
+Python client for CAAS
 
 *To be filled: Brief Introduction*
 
@@ -20,7 +20,7 @@ Using pip::
 A virtualenvwrapper is recommended::
 
 	virtualenv python-magnumclient
-	pip install puthon-caasclient
+	pip install python-caasclient
 
 Manual Installation::
 

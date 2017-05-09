@@ -14,7 +14,7 @@ with open(path.join(here, 'README.rst')) as f:
 
 setup(
 	name="caasclient",
-	version="1.0.0b1",
+	version="1.0.1b1",
 	description="Python client for CAAS",
     long_description=long_description,
 	author="rogeryu",
