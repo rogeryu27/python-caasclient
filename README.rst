@@ -1,5 +1,5 @@
 python-caasclient
-======
+=================
 
 Python client for caas
 
@@ -7,11 +7,22 @@ Python client for caas
 
 Features
 --------
+
 * HTTP interface using requests
 * Python native quering for CAAS API objects
 
 Installation
 ------------
+Using pip::
+
+	pip install python-caasclient
+
+A virtualenvwrapper is recommended::
+
+	virtualenv python-magnumclient
+	pip install puthon-caasclient
+
+Manual Installation::
 
 	git clone https://github.com/rogeryu27/python-caasclient.git
 	cd python-caasclient
