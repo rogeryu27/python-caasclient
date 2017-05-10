@@ -2,7 +2,7 @@
 # @Author: Administrator
 # @Date:   2017-05-07 22:50:54
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-10 15:58:46
+# @Last Modified time: 2017-05-10 17:25:42
 
 from caasclient.v1 import base
 
@@ -26,17 +26,29 @@ class ImageManager(base.Manager):
     resource_class = Image
     api_name = "images"
 
-    def create_image_by_step():
-        pass
+    def create_image_by_step(self, **kwargs):
+        return self.api._post('/images/create_image_by_step', **kwargs)
 
-   	def create_image_from dockerfile():
-        pass
+   	def create_image_from dockerfile(self, **kwargs):
+        return self.api._post('/images/create_image_from_dockerfile', **kwargs)
 
    	def search(self, term):
-   		return self._get('/images/%s/search' % term)
+   		return self.api._get('/images/%s/search' % term)
+
+    def pull(self, img):
+        return self.api._get('/images/pull/%s' % img)
+
+    def push(self, img, **kwargs):
+        return self.api._post('/images/push/%s' % img, **kwargs)
 
    	def delete(self, img_id):
-   		self._delete('/images/%s' % img_id)
+   		return self.api._delete('/images/%s' % img_id)
 
-   	def list(self, search_opts=None, limit=None, sort_by=None):
-   		return self._list('/images')
+   	def list(self, filter=None, limit=None, sort_by=None):
+   		return self.api._list('/images')
+
+    def inspect(self, img_id):
+        return self.api._get('/images/%s' % img_id)
+
+    def create_registry(self, **kwargs):
+        return self.api._post('images/registry', **kwargs)

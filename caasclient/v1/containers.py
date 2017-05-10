@@ -2,7 +2,7 @@
 # @Author: Administrator
 # @Date:   2017-05-07 22:51:03
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-10 16:02:38
+# @Last Modified time: 2017-05-10 17:20:24
 
 from caasclient.v1 import base
 
@@ -11,20 +11,34 @@ class Container(base.ApiObject):
 
 class ContainerManager(base.Manager):
     """Container Manager for CAAS Service API
-    	:method create_image_by_step: Create an docker image by a workflow
-    	:method create_image_from_dockerfile: Create an docker image with a dockerfile
-    	:method search: Search related docker images from Docker Hub with a specified term
-    	:method pull: Download an docker image from a registry
-    	:method push: Upload an docker image to a registry
-    	:method delete: Delete an project
-    	:method list: List specified docker images
-    	:method inspect: Get an image object
-    	:method create_registry: Create a local registry
-		:method tag: Add a tag to a image
-		To be added [tag_related_method]
+        :method create: Create a container from a image
+        :method start: Start a container
+        :method stop: Stop a container
+    	:method delete: Delete a container
+    	:method list: List specified containers
+    	:method inspect: Get an container object
+        :method commit: 
+        :method logs: show the log of a container
+        To be added:[version related]
     """
 	api_name = "containers"
 	resource_class = Container
 
-	def delete(self, c_id):
-		self.api._delete('/containers/%s' % c_id)
+    def create(self, **kwargs):
+        return self.api._post('/containers/create/', **kwargs)
+
+    def start(self, c_id):
+        return self.api._post('/container/%s/stop' % c_id)
+        
+    def stop(self, c_id):
+        return self.api._post('/container/%s/start' % c_id)
+    
+    def delete(self, c_id):
+        return self.api._delete('/containers/%s' % c_id)
+
+    def list(self, filter=None, limit=None):
+        return self.api._get('/containers')
+
+    def inspect(self, c_id):
+        return self.api._get('containers/%s' % c_id)
+

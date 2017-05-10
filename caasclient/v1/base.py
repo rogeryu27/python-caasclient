@@ -2,7 +2,12 @@
 # @Author: Administrator
 # @Date:   2017-05-07 22:29:31
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-10 15:57:59
+# @Last Modified time: 2017-05-10 17:19:37
+"""
+	Base Class for ApiObjects and Manager
+	* Formatting the request and response data
+	* Construct the request url
+"""
 
 class ApiObject(object):
 
