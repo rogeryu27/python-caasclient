@@ -2,33 +2,32 @@
 # @Author: Administrator
 # @Date:   2017-05-06 23:10:19
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-09 22:20:28
+# @Last Modified time: 2017-05-10 16:03:28
 import requests
 
+from six.moves.urllib.parse import urlparse
+
 class HTTPClient(requests.Session):
-	def __init__(self,endpoint,**kwargs):
-		self.endpoint = endpoint
+	def __init__(self, base_url, **kwargs):
+		self.base_url = base_url
 		# Authentication self.auth_token = kwargs.get('auth_token')
 		self.api_version = kwargs.get('api_version')
-		self.connection_params = kwargs.get('connection_params')
-
-	def make_url(self,**kwargs):
-		pass
+		# self.connection_params = kwargs.get('connection_params')
 
 	def _get(self, url, **kwargs):
-		return self.get(url)
+		return self.get(self._url(url), **kwargs)
 		
 	def _post(self, url, **kwargs):
-		return self.post(url)
+		return self.post(self._url(url), **kwargs)
 
 	def _put(self, url, **kwargs):
-		return self.put(url)
+		return self.put(self._url(url), **kwargs)
 
 	def _patch(self, url, **kwargs):
-		return self.patch(url)
+		return self.patch(self._url(url), **kwargs)
 
 	def _delete(self, url, **kwargs):
-		return self.delete(url)
+		return self.delete(self._url(url), **kwargs)
 
 	def _raise_for_status(self, response):
 		'''
@@ -39,7 +38,19 @@ class HTTPClient(requests.Session):
 		except request.exceptions.HTTPError as e:
 			raise e
 
-	def _url(self, )
+	def get_kwargs(self, **kwargs):
+		'''
+			Create a full URL to request based on arguments.
+		'''
+		pass
 
+	def _url(self, url, version=None):
+		if version:
+			return '{0}/v{1}{2}'.format(
+				self.base_url, version, url
+			)
+		else:
+			return urlparse('{0}{1}'.format(self.base_url, url))
 
-# class HTTPSession(object):
+	def api_version(self):
+		return self.api_version

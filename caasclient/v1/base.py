@@ -2,33 +2,54 @@
 # @Author: Administrator
 # @Date:   2017-05-07 22:29:31
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-09 17:01:57
+# @Last Modified time: 2017-05-10 15:57:59
 
+class ApiObject(object):
+
+	def __init__(self, manager, data):
+		self.manager = manager
+		self.data = data
+		self.set_data(data)
+
+	def set_data(data):
+		pass
 
 class Manager(object):
 	
 	def __init__(self,api):
 		self.api = api
 
-	def make_path(self, id):
-		return '/' + self.api.api_version + '/' + \
-			self.api_name + '/%s' % id if id else \
-			'/' + self.api.api_version + '/' + self.api_name
+	def _path(self, url, version=None):
+		return '/%s/%s' % {self.api_name, url}
 
-	def list(self):
-		return {"a":"a"}
+	def _list(self, url ,limit=None):
+		resp = self.api._get(url)
+		self.api._raise_for_status(resp)
+		return [self.resource_class(self, res)
+				for res in resp.json()]
 
-	def get(self, id):
-		pass
+	def _get(self, url):
+		resp = self.api._get(url)
+		self.api._raise_for_status(resp)
+		data = resp.json() #TODO: If cannot be decoded 
+		return self.resource_class(self, data)
+		# return a resource object
 
-	def create(self, id):
-		self.api.post()
+	def _post(self, url, data):
+		resp = self.api._post(url, {'data': data}) #{'json': data}
+		self.api._raise_for_status(resp)
+		return resp.status_code
 
-	def filter(self, id):
-		pass
+	def _update(self, url):
+		resp = self.api._patch(url)
+		self.api._raise_for_status(resp)
+		return resp.status_code
 		
-	def delete(self, id):
-		self.api.delete(self.make_path(id))
+	def _delete(self, url):
+		resp = self.api._delete(url)
+		if resp.status_code != 204:
+			self.api._raise_for_status(resp)
+		return resp.status_code
 
 
 	
