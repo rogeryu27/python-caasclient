@@ -7,7 +7,7 @@
 from caasclient.v1 import base
 
 class Container(base.ApiObject):
-	resource_name = 'container'
+    resource_name = 'container'
 
 class ContainerManager(base.Manager):
     """Container Manager for CAAS Service API
@@ -21,8 +21,8 @@ class ContainerManager(base.Manager):
         :method logs: show the log of a container
         To be added:[version related]
     """
-	api_name = "containers"
-	resource_class = Container
+    api_name = "containers"
+    resource_class = Container
 
     def create(self, **kwargs):
         return self.api._post('/containers/create/', **kwargs)

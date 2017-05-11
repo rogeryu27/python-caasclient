@@ -19,9 +19,9 @@ Using pip::
 
 A virtualenvwrapper is recommended::
 
-	virtualenv python-caasclient
+    virtualenv python-caasclient
     source python-caasclient/bin/activate
-	pip install python-caasclient
+    pip install python-caasclient
 
 Manual Installation::
 
@@ -48,7 +48,7 @@ Create a self-defined image:
 
 	from caasclient import client as caas_client
 
-	image = caas_client.Client(<caas url>).image.create_by_dockerfile(os.open('path/to/dockerfile','w+'))
+	image = caas_client.Client(<caas url>).images.create_by_dockerfile(os.open('path/to/dockerfile','w+'))
 
 Requirements
 ------------

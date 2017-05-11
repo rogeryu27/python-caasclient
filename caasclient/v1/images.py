@@ -29,10 +29,10 @@ class ImageManager(base.Manager):
     def create_image_by_step(self, **kwargs):
         return self.api._post('/images/create_image_by_step', **kwargs)
 
-   	def create_image_from dockerfile(self, **kwargs):
+    def create_image_from_dockerfile(self, **kwargs):
         return self.api._post('/images/create_image_from_dockerfile', **kwargs)
 
-   	def search(self, term):
+    def search(self, term):
    		return self.api._get('/images/%s/search' % term)
 
     def pull(self, img):
@@ -41,10 +41,10 @@ class ImageManager(base.Manager):
     def push(self, img, **kwargs):
         return self.api._post('/images/push/%s' % img, **kwargs)
 
-   	def delete(self, img_id):
+    def delete(self, img_id):
    		return self.api._delete('/images/%s' % img_id)
 
-   	def list(self, filter=None, limit=None, sort_by=None):
+    def list(self, filter=None, limit=None, sort_by=None):
    		return self.api._list('/images')
 
     def inspect(self, img_id):

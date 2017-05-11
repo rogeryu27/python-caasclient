@@ -9,6 +9,8 @@ from six.moves.urllib.parse import urlparse
 
 class HTTPClient(requests.Session):
 	def __init__(self, base_url, **kwargs):
+		super(HTTPClient, self).__init__()
+
 		self.base_url = base_url
 		# Authentication self.auth_token = kwargs.get('auth_token')
 		self.api_version = kwargs.get('api_version')
@@ -50,7 +52,7 @@ class HTTPClient(requests.Session):
 				self.base_url, version, url
 			)
 		else:
-			return urlparse('{0}{1}'.format(self.base_url, url))
+			return '{0}{1}'.format(self.base_url, url)
 
 	def api_version(self):
 		return self.api_version
