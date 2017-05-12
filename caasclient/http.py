@@ -2,9 +2,10 @@
 # @Author: Administrator
 # @Date:   2017-05-06 23:10:19
 # @Last Modified by:   Administrator
-# @Last Modified time: 2017-05-10 16:03:28
+# @Last Modified time: 2017-05-12 17:14:15
 import requests
 
+from exceptions import APIException
 from six.moves.urllib.parse import urlparse
 
 class HTTPClient(requests.Session):
@@ -36,7 +37,9 @@ class HTTPClient(requests.Session):
 		try:
 			response.raise_for_status()
 		except request.exceptions.HTTPError as e:
-			raise e
+			# if e.response.status_code == 404:
+			# 	raise NotFoundError(e, response)
+			raise APIException(e, response)
 
 	def get_kwargs(self, **kwargs):
 		'''
