@@ -15,13 +15,13 @@ import sys
 
 import six
 
-from caasclient.v1 import client as caas_client
+from caasclient import client as caas_client
 from caasclient.v1 import shell as caas_shell
 
 class CaasClientArgumentParser(argparse.ArgumentParser):
 
 	def __init__(self, *args, **kwargs):
-		super(MagnumClientArgumentParser, self).__init__(*args, **kwargs)
+		super(CaasClientArgumentParser, self).__init__(*args, **kwargs)
 
 class CaasShell(object):
 	def get_base_parser(self):
@@ -38,9 +38,8 @@ class CaasShell(object):
 							action='version',
 							version='%(prog)s 1.0')
 
-		parser.add_argument('-h', '--help',
-							action='store_true'
-							help='')
+		# parser.add_argument('-h', '--help',
+		# 					action='store_true')
 
 		return parser
 
@@ -54,7 +53,7 @@ class CaasShell(object):
 		actions_module = caas_shell
 
 		# for actions_module in actions_modules:
-			self._find_actions(subparsers, actions_module)
+		self._find_actions(subparsers, actions_module)
 		self._find_actions(subparsers, self)
 
 		return parser
@@ -68,8 +67,8 @@ class CaasShell(object):
 			subparser = (
 				subparsers.add_parser(subcommand)
 			)
-			subparser.add_argument('-h', '--help',
-									action='help')
+			# subparser.add_argument('-h', '--help',
+			# 						action='store_true')
 
 			self.subcommands[subcommand] = subparser
 			for (args,kwargs) in arguments:
@@ -77,19 +76,24 @@ class CaasShell(object):
 			subparser.set_defaults(func=callback)
 
 
-	def main(self, agrv):
-		parser = self.get_base_parser()
-		(options, args) = parser.parser_known_args(argv)
+	def main(self, argv):
+		# Compatible Python 3.4
+		argv = list(argv)
+
+		# Parse args once partially to find version and construct subcommands
+		# parser = self.get_base_parser()
+		# (options, args) = parser.parse_known_args(argv)
 
 		subcommand_parser = (
 			self.get_subcommand_parser()
+			#self.get_subcommand_parser(options.api_version)
 		)
 
 		self.parser = subcommand_parser
 
 		args = subcommand_parser.parse_args(argv)
 
-		self.client = caas_client.Client(base_url='localhost:5000')
+		self.client = caas_client.Client(caas_url='localhost:5000')
 
 		args.func(self.client, args)
 
@@ -97,6 +101,7 @@ def main():
 	try:
 		CaasShell().main(sys.argv[1:])
 	except Exception as e:
+		# TODO: Raise Exceptions
 		raise e
 		sys.exit(1)
 

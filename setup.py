@@ -13,8 +13,8 @@ with open(path.join(here, 'README.rst')) as f:
     long_description = f.read()
 
 setup(
-	name="python-caasclient",
-	version="1.0.1b1",
+	name="caasclient",
+	version="1.0.2b1",
 	description="Python client for CAAS",
     long_description=long_description,
 	author="rogeryu",
